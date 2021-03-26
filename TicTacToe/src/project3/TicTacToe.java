@@ -33,6 +33,11 @@ public class TicTacToe {
             String jsonData = response.body().string();
             JSONObject Jobject = new JSONObject(jsonData);
             JSONArray games = Jobject.getJSONArray("myGames");
+            if(games.isEmpty()){
+                System.out.println("No game available");
+                sleepSec(5);
+                continue;
+            }
             for (int i = 0; i < games.length(); i++) {
 
                 String gameId = games.getJSONObject(i).keys().next();
