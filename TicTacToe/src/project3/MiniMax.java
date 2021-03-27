@@ -119,13 +119,13 @@ public class MiniMax {
             }
             if (maxXcount == target) {
                 won = true;
-                System.out.println("MaxXCount: " + maxXcount);
+//                System.out.println("MaxXCount: " + maxXcount);
                 if (mySymbol == X) return Integer.MAX_VALUE;
                 else return Integer.MIN_VALUE;
             }
             if (maxOcount == target) {
                 won = true;
-                System.out.println("MaxOCount: " + maxOcount);
+//                System.out.println("MaxOCount: " + maxOcount);
                 if (mySymbol == O) return Integer.MAX_VALUE;
                 else return Integer.MIN_VALUE;
             }
@@ -167,13 +167,13 @@ public class MiniMax {
             }
             if (maxXcount == target) {
                 won = true;
-                System.out.println("MaxXCount: " + maxXcount);
+//                System.out.println("MaxXCount: " + maxXcount);
                 if (mySymbol == X) return Integer.MAX_VALUE;
                 else return Integer.MIN_VALUE;
             }
             if (maxOcount == target) {
                 won = true;
-                System.out.println("MaxOCount: " + maxOcount);
+//                System.out.println("MaxOCount: " + maxOcount);
                 if (mySymbol == O) return Integer.MAX_VALUE;
                 else return Integer.MIN_VALUE;
             }
@@ -215,13 +215,13 @@ public class MiniMax {
         }
         if (maxXcount == target) {
             won = true;
-            System.out.println("MaxXCount: " + maxXcount);
+//            System.out.println("MaxXCount: " + maxXcount);
             if (mySymbol == X) return Integer.MAX_VALUE;
             else return Integer.MIN_VALUE;
         }
         if (maxOcount == target) {
             won = true;
-            System.out.println("MaxOCount: " + maxOcount);
+//            System.out.println("MaxOCount: " + maxOcount);
             if (mySymbol == O) return Integer.MAX_VALUE;
             else return Integer.MIN_VALUE;
         }
@@ -263,13 +263,13 @@ public class MiniMax {
         }
         if (maxXcount == target) {
             won = true;
-            System.out.println("MaxXCount: " + maxXcount);
+//            System.out.println("MaxXCount: " + maxXcount);
             if (mySymbol == X) return Integer.MAX_VALUE;
             else return Integer.MIN_VALUE;
         }
         if (maxOcount == target) {
             won = true;
-            System.out.println("MaxOCount: " + maxOcount);
+//            System.out.println("MaxOCount: " + maxOcount);
             if (mySymbol == O) return Integer.MAX_VALUE;
             else return Integer.MIN_VALUE;
         }
