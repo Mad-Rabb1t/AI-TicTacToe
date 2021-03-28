@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import static project3.Symbol.*;
+
 import static java.lang.Thread.sleep;
 
 public class TicTacToe {
