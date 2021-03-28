@@ -110,10 +110,18 @@ public class MiniMax {
                     xpcount++;
                     opcount++;
                 }
-                if (xpcount >= target && maxXcount < xcount) {
+                if(xpcount == target + 1){
+                    xpcount = target;
+                    if(board.getSymbolAt(row, col - target) == X) xcount--;
+                }
+                if(opcount == target + 1){
+                    opcount = target;
+                    if(board.getSymbolAt(row, col - target) == O) ocount--;
+                }
+                if (xpcount == target && maxXcount < xcount) {
                     maxXcount = xcount;
                 }
-                if (opcount >= target && maxOcount < ocount) {
+                if (opcount == target && maxOcount < ocount) {
                     maxOcount = ocount;
                 }
             }
@@ -157,11 +165,18 @@ public class MiniMax {
                     xpcount++;
                     opcount++;
                 }
-
-                if (xpcount >= target && maxXcount < xcount) {
+                if(xpcount == target + 1){
+                    xpcount = target;
+                    if(board.getSymbolAt(col, row - target) == X) xcount--;
+                }
+                if(opcount == target + 1){
+                    opcount = target;
+                    if(board.getSymbolAt(col, row - target) == O) ocount--;
+                }
+                if (xpcount == target && maxXcount < xcount) {
                     maxXcount = xcount;
                 }
-                if (opcount >= target && maxOcount < ocount) {
+                if (opcount == target && maxOcount < ocount) {
                     maxOcount = ocount;
                 }
             }
@@ -205,11 +220,19 @@ public class MiniMax {
                 xpcount++;
                 opcount++;
             }
+            if(xpcount == target + 1){
+                xpcount = target;
+                if(board.getSymbolAt(i - target, i - target) == X) xcount--;
+            }
+            if(opcount == target + 1){
+                opcount = target;
+                if(board.getSymbolAt(i - target, i - target) == O) ocount--;
+            }
 
-            if (xpcount >= target && maxXcount < xcount) {
+            if (xpcount == target && maxXcount < xcount) {
                 maxXcount = xcount;
             }
-            if (opcount >= target && maxOcount < ocount) {
+            if (opcount == target && maxOcount < ocount) {
                 maxOcount = ocount;
             }
         }
@@ -253,11 +276,18 @@ public class MiniMax {
                 xpcount++;
                 opcount++;
             }
-
-            if (xpcount >= target && maxXcount < xcount) {
+            if(xpcount == target + 1){
+                xpcount = target;
+                if(board.getSymbolAt(i - target, (indexMax - i)  + target) == X) xcount--;
+            }
+            if(opcount == target + 1){
+                opcount = target;
+                if(board.getSymbolAt(i - target, (indexMax - i)  + target) == O) ocount--;
+            }
+            if (xpcount == target && maxXcount < xcount) {
                 maxXcount = xcount;
             }
-            if (opcount >= target && maxOcount < ocount) {
+            if (opcount == target && maxOcount < ocount) {
                 maxOcount = ocount;
             }
         }
