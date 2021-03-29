@@ -60,4 +60,17 @@ public class Board {
     public int getTarget() {
         return target;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                sb.append(String.format("%s ", board[i][j].toString()));
+            }
+            sb.append("\n");
+        }
+        sb.append("\n");
+        return sb.toString();
+    }
 }

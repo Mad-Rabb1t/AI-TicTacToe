@@ -130,17 +130,16 @@ public class TicTacToe {
                 JSONObject responseMoveJSON = new JSONObject(responseMoveString);
                 String responseMoveCode = responseMoveJSON.getString("code");
                 System.out.println("Make move code: " + responseMoveCode);
-                sleepSec(5);
+                System.out.printf("Current board of %s game: \n", gameId);
+                System.out.println(board);
             }
             if (!myMoveExisted) {
-                System.out.println("Not my move in available games");
-                sleepSec(5);
-                continue;
+                System.out.println("Not my move in all available games");
             }
             if (!activeGameLeft) {
-                System.out.println("All games are over");
-                sleepSec(5);
+                System.out.println("All available games are over");
             }
+            sleepSec(5);
         }
     }
 
