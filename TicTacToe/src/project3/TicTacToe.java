@@ -39,6 +39,9 @@ public class TicTacToe {
                 sleepSec(5);
                 continue;
             }
+
+            boolean activeGameLeft = false;
+            boolean myMoveExisted = false;
             for (int i = 0; i < games.length(); i++) {
 
                 String gameId = games.getJSONObject(i).keys().next();
@@ -68,21 +71,19 @@ public class TicTacToe {
                 JSONObject responseGetMoveJSON = new JSONObject(responseGetMoveString);
                 if (!responseGetMoveJSON.getString("code").equals("OK")) {
                     if (!responseGetMoveJSON.getString("message").equals("No moves")) {
-                        System.out.println("Not my move");
-                        sleepSec(5);
+                        System.out.println("Not my move in " + gameId);
                         continue;
                     }
                 } else {
                     if (responseGetMoveJSON.getJSONArray("moves").isEmpty() && MiniMax.mySymbol != O) { // means op has to start the game
-                        System.out.println("Not my move");
-                        sleepSec(5);
+                        System.out.println("Not my move in " + gameId);
                         continue;
                     } else if (responseGetMoveJSON.getJSONArray("moves").getJSONObject(0).getString("teamId").equals("1258")) { // not my move
-                        System.out.println("Not my move");
-                        sleepSec(5);
+                        System.out.println("Not my move in " + gameId);
                         continue;
                     } else {
-                        System.out.println("My move");
+                        myMoveExisted = true;
+                        System.out.println("My move in" + gameId);
                     }
                 }
 
@@ -103,10 +104,9 @@ public class TicTacToe {
                 Board board = Board.createFromString(boardString, boardObject.getInt("target"));
 
                 if (!board.anyMovesRemain()) {
-                    System.out.println("Game is over");
-                    sleepSec(5);
+                    System.out.println("Game " + gameId + " is over");
                     continue;
-                }
+                } else activeGameLeft = true;
                 // Make a move
                 Move move = MiniMax.getNextMove(board);
 
@@ -130,6 +130,15 @@ public class TicTacToe {
                 JSONObject responseMoveJSON = new JSONObject(responseMoveString);
                 String responseMoveCode = responseMoveJSON.getString("code");
                 System.out.println("Make move code: " + responseMoveCode);
+                sleepSec(5);
+            }
+            if (!myMoveExisted) {
+                System.out.println("Not my move in available games");
+                sleepSec(5);
+                continue;
+            }
+            if (!activeGameLeft) {
+                System.out.println("All games are over");
                 sleepSec(5);
             }
         }
