@@ -4,13 +4,13 @@ import static project3.Symbol.*;
 
 public class MiniMax {
 
-    private static final int MAX_DEPTH = 3;
+    private static final int MAX_DEPTH = 4;
     private static boolean won = false;
     public static Symbol mySymbol = EMPTY;
     public static Symbol opSymbol = EMPTY;
 
     public static int miniMax(Board board, int depth, int alpha, int beta, boolean isMax) {
-        int nodeValue = heuristicFunction(board);
+        int nodeValue = heuristicFunction(board, depth);
 
         if (depth == MAX_DEPTH || !board.anyMovesRemain() || won) {
             won = false;
@@ -82,7 +82,7 @@ public class MiniMax {
     }
 
 
-    private static int heuristicFunction(Board board) {
+    private static int heuristicFunction(Board board, int depth) {
         int value = 0;
         int bWidth = board.getBoardSize();
         int target = board.getTarget();
@@ -128,17 +128,19 @@ public class MiniMax {
             if (maxXcount == target) {
                 won = true;
 //                System.out.println("MaxXCount: " + maxXcount);
-                if (mySymbol == X) return Integer.MAX_VALUE;
-                else return Integer.MIN_VALUE;
+                if (mySymbol == X) return (Integer.MAX_VALUE / 2) - depth;
+                else return (Integer.MIN_VALUE / 2) + depth;
             }
             if (maxOcount == target) {
                 won = true;
 //                System.out.println("MaxOCount: " + maxOcount);
-                if (mySymbol == O) return Integer.MAX_VALUE;
-                else return Integer.MIN_VALUE;
+                if (mySymbol == O) return (Integer.MAX_VALUE / 2) - depth;
+                else return (Integer.MIN_VALUE / 2) + depth;
             }
-            if (mySymbol == X) value += (maxXcount * maxXcount) - (maxOcount * maxOcount);
-            else value += (maxOcount * maxOcount) - (maxXcount * maxXcount);
+//            if (mySymbol == X) value += (maxXcount * maxXcount) - (maxOcount * maxOcount);
+//            else value += (maxOcount * maxOcount) - (maxXcount * maxXcount);
+            if (mySymbol == X) value += maxXcount - maxOcount;
+            else value += maxOcount - maxXcount;
             xcount = 0;
             ocount = 0;
             maxXcount = 0;
@@ -183,17 +185,19 @@ public class MiniMax {
             if (maxXcount == target) {
                 won = true;
 //                System.out.println("MaxXCount: " + maxXcount);
-                if (mySymbol == X) return Integer.MAX_VALUE;
-                else return Integer.MIN_VALUE;
+                if (mySymbol == X) return (Integer.MAX_VALUE / 2) - depth;
+                else return (Integer.MIN_VALUE / 2) + depth;
             }
             if (maxOcount == target) {
                 won = true;
 //                System.out.println("MaxOCount: " + maxOcount);
-                if (mySymbol == O) return Integer.MAX_VALUE;
-                else return Integer.MIN_VALUE;
+                if (mySymbol == O) return (Integer.MAX_VALUE / 2) - depth;
+                else return (Integer.MIN_VALUE / 2) + depth;
             }
-            if (mySymbol == X) value += (maxXcount * maxXcount) - (maxOcount * maxOcount);
-            else value += (maxOcount * maxOcount) - (maxXcount * maxXcount);
+//            if (mySymbol == X) value += (maxXcount * maxXcount) - (maxOcount * maxOcount);
+//            else value += (maxOcount * maxOcount) - (maxXcount * maxXcount);
+            if (mySymbol == X) value += maxXcount - maxOcount;
+            else value += maxOcount - maxXcount;
 
             xcount = 0;
             ocount = 0;
@@ -238,18 +242,20 @@ public class MiniMax {
         }
         if (maxXcount == target) {
             won = true;
-//            System.out.println("MaxXCount: " + maxXcount);
-            if (mySymbol == X) return Integer.MAX_VALUE;
-            else return Integer.MIN_VALUE;
+//                System.out.println("MaxXCount: " + maxXcount);
+            if (mySymbol == X) return (Integer.MAX_VALUE / 2) - depth;
+            else return (Integer.MIN_VALUE / 2) + depth;
         }
         if (maxOcount == target) {
             won = true;
-//            System.out.println("MaxOCount: " + maxOcount);
-            if (mySymbol == O) return Integer.MAX_VALUE;
-            else return Integer.MIN_VALUE;
+//                System.out.println("MaxOCount: " + maxOcount);
+            if (mySymbol == O) return (Integer.MAX_VALUE / 2) - depth;
+            else return (Integer.MIN_VALUE / 2) + depth;
         }
-        if (mySymbol == X) value += (maxXcount * maxXcount) - (maxOcount * maxOcount);
-        else value += (maxOcount * maxOcount) - (maxXcount * maxXcount);
+//        if (mySymbol == X) value += (maxXcount * maxXcount) - (maxOcount * maxOcount);
+//        else value += (maxOcount * maxOcount) - (maxXcount * maxXcount);
+        if (mySymbol == X) value += maxXcount - maxOcount;
+        else value += maxOcount - maxXcount;
 
         xcount = 0;
         ocount = 0;
@@ -293,18 +299,23 @@ public class MiniMax {
         }
         if (maxXcount == target) {
             won = true;
-//            System.out.println("MaxXCount: " + maxXcount);
-            if (mySymbol == X) return Integer.MAX_VALUE;
-            else return Integer.MIN_VALUE;
+//                System.out.println("MaxXCount: " + maxXcount);
+            if (mySymbol == X) return (Integer.MAX_VALUE / 2) - depth;
+            else return (Integer.MIN_VALUE / 2) + depth;
         }
         if (maxOcount == target) {
             won = true;
-//            System.out.println("MaxOCount: " + maxOcount);
-            if (mySymbol == O) return Integer.MAX_VALUE;
-            else return Integer.MIN_VALUE;
+//                System.out.println("MaxOCount: " + maxOcount);
+            if (mySymbol == O) return (Integer.MAX_VALUE / 2) - depth;
+            else return (Integer.MIN_VALUE / 2) + depth;
         }
-        if (mySymbol == X) value += (maxXcount * maxXcount) - (maxOcount * maxOcount);
-        else value += (maxOcount * maxOcount) - (maxXcount * maxXcount);
+//        if (mySymbol == X) value += (maxXcount * maxXcount) - (maxOcount * maxOcount);
+//        else value += (maxOcount * maxOcount) - (maxXcount * maxXcount);
+        if (mySymbol == X) value += maxXcount - maxOcount;
+        else value += maxOcount - maxXcount;
+
+        if(value > 0) value -= depth;
+        else value += depth;
 
         return value;
     }
