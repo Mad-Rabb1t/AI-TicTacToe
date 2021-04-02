@@ -66,7 +66,7 @@ public class Board {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                sb.append(String.format("%s ", board[i][j].toString()));
+                sb.append(String.format("%s ", board[i][j].equals(EMPTY) ? "-" : board[i][j].toString()));
             }
             sb.append("\n");
         }

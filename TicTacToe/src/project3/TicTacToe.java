@@ -40,7 +40,6 @@ public class TicTacToe {
                 continue;
             }
 
-            boolean activeGameLeft = false;
             boolean myMoveExisted = false;
             for (int i = 0; i < games.length(); i++) {
 
@@ -106,7 +105,7 @@ public class TicTacToe {
                 if (!board.anyMovesRemain()) {
                     System.out.println("Game " + gameId + " is over");
                     continue;
-                } else activeGameLeft = true;
+                }
                 // Make a move
                 Move move = MiniMax.getNextMove(board);
 
@@ -135,9 +134,6 @@ public class TicTacToe {
             }
             if (!myMoveExisted) {
                 System.out.println("Not my move in all available games");
-            }
-            if (!activeGameLeft) {
-                System.out.println("All available games are over");
             }
             sleepSec(5);
         }
